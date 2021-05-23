@@ -1,0 +1,18 @@
+<h1>Авторизация</h1>
+
+<div class="example-container">
+  <mat-form-field appearance="fill">
+    <mat-label>Введите email</mat-label>
+    <input matInput placeholder="pat@example.com" [formControl]="email" required>
+  </mat-form-field>
+
+  <mat-form-field appearance="fill">
+    <mat-label>Введите пароль</mat-label>
+    <input matInput [type]="hide ? 'password' : 'text'" [formControl]="password" required>
+    <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
+      <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+    </button>
+  </mat-form-field>
+
+  <button mat-raised-button color="primary" (click)="onLogin()">Войти</button>
+</div>
