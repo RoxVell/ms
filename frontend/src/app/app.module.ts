@@ -11,6 +11,8 @@ import { EditOperatorModalComponent } from './components/modals/edit-operator-mo
 import { ReactiveFormsModule } from "@angular/forms";
 import { AuthModule } from "./auth/auth.module";
 import { DefaultLayout } from './components/layouts/default-layout/default-layout.component';
+import { EditServiceModalComponent } from './components/modals/edit-service-modal/edit-service-modal.component';
+import { ServicesModule } from "./services/services.module";
 
 @NgModule({
   declarations: [
@@ -18,6 +20,7 @@ import { DefaultLayout } from './components/layouts/default-layout/default-layou
     DeleteConfirmModalComponent,
     EditOperatorModalComponent,
     DefaultLayout,
+    EditServiceModalComponent,
   ],
   imports: [
     BrowserModule,
@@ -27,6 +30,7 @@ import { DefaultLayout } from './components/layouts/default-layout/default-layou
     OperatorsModule,
     ReactiveFormsModule,
     AuthModule,
+    ServicesModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

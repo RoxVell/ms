@@ -74,7 +74,7 @@ export class OperatorsPageComponent implements OnInit {
     });
   }
 
-  onOpenEditOperatorModal(operator: any) {
+  onOpenDeleteOperatorModal(operator: any) {
     const dialogRef = this.dialog.open(DeleteConfirmModalComponent, {
       data: {
         isRemove: false

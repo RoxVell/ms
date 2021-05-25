@@ -1,0 +1,20 @@
+<div>
+  <h2 style="text-align: center" mat-dialog-title>
+    {{ (data.editMode === EDIT_MODE.EDIT ? 'Редактирование ' : 'Создание ') + (data.isGroup ? 'группы услуг' : 'услуги') }}
+  </h2>
+
+  <mat-divider></mat-divider>
+
+  <div class="form">
+    <mat-form-field appearance="fill">
+      <mat-label>Название услуги</mat-label>
+      <input matInput placeholder="pat@example.com" [formControl]="name" required>
+    </mat-form-field>
+
+    <mat-form-field appearance="fill">
+      <mat-label>Описание услуги</mat-label>
+      <input matInput placeholder="pat@example.com" [formControl]="description" required>
+    </mat-form-field>
+    <button mat-raised-button color="primary" (click)="onSave()">Сохранить</button>
+  </div>
+</div>

@@ -1,5 +1,5 @@
 <div style="display: flex; justify-content: space-between; align-items: center">
-  <h1>Операторы</h1>
+  <h1>Список операторов</h1>
   <button mat-raised-button color="primary" (click)="openCreateOperatorModal()">Добавить оператора</button>
 </div>
 
@@ -41,7 +41,7 @@
               <mat-icon>mode_edit</mat-icon>
               <span>Редактировать</span>
             </button>
-            <button mat-menu-item (click)="onOpenEditOperatorModal(operator)">
+            <button mat-menu-item (click)="onOpenDeleteOperatorModal(operator)">
               <mat-icon>delete</mat-icon>
               <span>Удалить</span>
             </button>

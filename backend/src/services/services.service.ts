@@ -12,4 +12,20 @@ export class ServicesService {
   async createService(serviceDto: CreateServiceDto) {
     return await this.servicesRepository.create(serviceDto);
   }
+
+  async editService(id: number, serviceDto: CreateServiceDto) {
+    const service = await this.servicesRepository.findOne({ where: { id } });
+
+    if (!service) throw new Error(`Service doesn't exist`);
+
+    return service.update(serviceDto);
+  }
+
+  async getServices(isGroup: boolean) {
+    return this.servicesRepository.findAll({ where: { isGroup } });
+  }
+
+  deleteService(id: number) {
+    return this.servicesRepository.destroy({ where: { id }});
+  }
 }
