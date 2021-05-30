@@ -18,8 +18,19 @@ export class ServicesService {
     private http: HttpClient,
   ) { }
 
-  getServices(isGroup = false) {
-    return this.http.get<Service[]>(`http://localhost:3000/services?isGroup=${isGroup}`);
+  getServices(isGroup?: boolean) {
+    if (typeof isGroup === 'boolean') {
+      return this.http.get<Service[]>(`http://localhost:3000/services?isGroup=${isGroup}`);
+    } else {
+      return this.http.get<Service[]>(`http://localhost:3000/services`);
+    }
+  }
+
+  buildDictByServices(services: Service[]): { [key: number]: Service } {
+    return services.reduce((acc: { [key: number]: Service }, service) => {
+      acc[service.id] = service;
+      return acc;
+    }, {});
   }
 
   create(service: CreateServiceCredentials) {

@@ -4,6 +4,8 @@ import { OperatorsPageComponent } from "./operators/operators-page/operators-pag
 import { LoginPageComponent } from "./auth/login-page/login-page.component";
 import { DefaultLayout } from "./components/layouts/default-layout/default-layout.component";
 import { ServicesPageComponent } from "./services/services-page/services-page.component";
+import { ServiceGroupsPageComponent } from "./services/service-groups-page/service-groups-page.component";
+import { ServiceTreePageComponent } from "./services/service-tree-page/service-tree-page.component";
 
 const routes: Routes = [
   {
@@ -20,8 +22,21 @@ const routes: Routes = [
         component: OperatorsPageComponent
       },
       {
-        path: 'services',
-        component: ServicesPageComponent,
+        path: 'service',
+        children: [
+          {
+            path: 'services',
+            component: ServicesPageComponent,
+          },
+          {
+            path: 'groups',
+            component: ServiceGroupsPageComponent,
+          },
+          {
+            path: 'tree',
+            component: ServiceTreePageComponent,
+          }
+        ]
       }
     ]
   },

@@ -1,0 +1,5 @@
+<p *ngFor="let service of data.services | async">
+  <mat-checkbox (change)="onCheckItem(service, $event)">{{service.name}}</mat-checkbox>
+</p>
+
+<button mat-raised-button color="primary" (click)="onSave()">Сохранить</button>

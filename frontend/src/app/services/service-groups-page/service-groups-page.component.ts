@@ -1,17 +1,18 @@
 import { Component, OnInit } from '@angular/core';
 import { Service, ServicesService } from "../services.service";
-import { EditServiceModalComponent, EDIT_MODE } from "../../components/modals/edit-service-modal/edit-service-modal.component";
 import { MatDialog } from "@angular/material/dialog";
-import { Operator } from "../../operators/operators.service";
+import {
+  EDIT_MODE,
+  EditServiceModalComponent
+} from "../../components/modals/edit-service-modal/edit-service-modal.component";
 import { DeleteConfirmModalComponent } from "../../components/modals/delete-confirm-modal/delete-confirm-modal.component";
-import { BehaviorSubject, merge, ReplaySubject } from "rxjs";
 
 @Component({
-  selector: 'app-services-page',
-  templateUrl: './services-page.component.html',
-  styleUrls: ['./services-page.component.css']
+  selector: 'app-service-groups-page',
+  templateUrl: './service-groups-page.component.html',
+  styleUrls: ['./service-groups-page.component.css']
 })
-export class ServicesPageComponent implements OnInit {
+export class ServiceGroupsPageComponent implements OnInit {
   data: Service[] = [];
   isLoadingResults = false;
 
@@ -27,7 +28,7 @@ export class ServicesPageComponent implements OnInit {
   updateServices() {
     this.isLoadingResults = true;
 
-    this.servicesService.getServices(false)
+    this.servicesService.getServices(true)
       .subscribe((services) => {
         this.data = services;
         this.isLoadingResults = false;
@@ -38,7 +39,7 @@ export class ServicesPageComponent implements OnInit {
     const dialogRef = this.dialog.open(EditServiceModalComponent, {
       data: {
         editMode: EDIT_MODE.EDIT,
-        isGroup: false
+        isGroup: true
       },
       minWidth: 500
     });
@@ -63,7 +64,7 @@ export class ServicesPageComponent implements OnInit {
       data: {
         service,
         editMode: EDIT_MODE.EDIT,
-        isGroup: false,
+        isGroup: true,
       },
       minWidth: 500
     });

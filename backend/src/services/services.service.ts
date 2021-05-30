@@ -21,11 +21,33 @@ export class ServicesService {
     return service.update(serviceDto);
   }
 
+  // async getAllServices() {
+  //   return this.servicesRepository.findAll();
+  // }
+
   async getServices(isGroup: boolean) {
-    return this.servicesRepository.findAll({ where: { isGroup } });
+    if (['true', 'false'].includes(String(isGroup))) {
+      return this.servicesRepository.findAll({ where: { isGroup } });
+    } else {
+      return this.servicesRepository.findAll();
+    }
+  }
+
+  async getServiceById(id: number) {
+    return this.servicesRepository.findOne({ where: { id } });
   }
 
   deleteService(id: number) {
-    return this.servicesRepository.destroy({ where: { id }});
+    return this.servicesRepository.destroy({ where: { id } });
+  }
+
+  async isGroup(id: number) {
+    const targetService = await this.servicesRepository.findOne({ where: { id } });
+    return targetService.isGroup;
+  }
+
+  async isExists(id: number) {
+    const target = await this.servicesRepository.findOne({ where: { id } });
+    return Boolean(target);
   }
 }

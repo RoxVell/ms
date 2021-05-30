@@ -9,6 +9,7 @@ import { RolesModule } from './roles/roles.module';
 import { Role } from './roles/roles.model';
 import { Service } from "./services/service.model";
 import { AuthModule } from './auth/auth.module';
+import { ServiceTreeModule } from './service-tree/service-tree.module';
 
 @Module({
   imports: [
@@ -28,6 +29,7 @@ import { AuthModule } from './auth/auth.module';
     OperatorsModule,
     RolesModule,
     AuthModule,
+    ServiceTreeModule,
   ],
   controllers: [],
   providers: [],

@@ -13,6 +13,8 @@ import { AuthModule } from "./auth/auth.module";
 import { DefaultLayout } from './components/layouts/default-layout/default-layout.component';
 import { EditServiceModalComponent } from './components/modals/edit-service-modal/edit-service-modal.component';
 import { ServicesModule } from "./services/services.module";
+import { MultilevelMenuService, NgMaterialMultilevelMenuModule } from "ng-material-multilevel-menu";
+import { ServicesSelectModalComponent } from './components/modals/services-select-modal/services-select-modal.component';
 
 @NgModule({
   declarations: [
@@ -21,6 +23,7 @@ import { ServicesModule } from "./services/services.module";
     EditOperatorModalComponent,
     DefaultLayout,
     EditServiceModalComponent,
+    ServicesSelectModalComponent,
   ],
   imports: [
     BrowserModule,
@@ -31,8 +34,9 @@ import { ServicesModule } from "./services/services.module";
     ReactiveFormsModule,
     AuthModule,
     ServicesModule,
+    NgMaterialMultilevelMenuModule,
   ],
-  providers: [],
+  providers: [MultilevelMenuService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
