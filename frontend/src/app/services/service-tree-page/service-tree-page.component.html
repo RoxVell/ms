@@ -3,14 +3,15 @@
 </div>
 
 <mat-tree #tree [dataSource]="dataSource" [treeControl]="treeControl" *ngIf="servicesDict$ | async as s">
-  <!-- This is the tree node template for leaf nodes -->
+  <button mat-icon-button (click)="addNewRootItem()"><mat-icon>add</mat-icon></button>
+  
   <mat-tree-node *matTreeNodeDef="let node" matTreeNodePadding>
-    <!-- use a disabled button to provide padding for tree leaf -->
     <button mat-icon-button disabled></button>
     {{s[node.service_id].name}}
+    <button *ngIf="s[node.service_id].isGroup" mat-icon-button (click)="addNewItem(node)"><mat-icon>add</mat-icon></button>
     <button mat-icon-button (click)="deleteItem(node)"><mat-icon>remove</mat-icon></button>
   </mat-tree-node>
-  <!-- This is the tree node template for expandable nodes -->
+
   <mat-tree-node *matTreeNodeDef="let node;when: hasChild" matTreeNodePadding>
     <button mat-icon-button matTreeNodeToggle [attr.aria-label]="'Toggle ' + node.service_id">
       <mat-icon class="mat-icon-rtl-mirror">
@@ -23,13 +24,3 @@
     <button mat-icon-button (click)="deleteItem(node)"><mat-icon>remove</mat-icon></button>
   </mat-tree-node>
 </mat-tree>
-
-<!--<pre>-->
-<!--  {{(servicesDict$ | async)[1].name}}-->
-<!--</pre>-->
-
-<pre>
-  {{servicesDict$ | async | json}}
-</pre>
-
-

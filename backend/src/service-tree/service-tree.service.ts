@@ -3,6 +3,7 @@ import { InjectModel } from '@nestjs/sequelize';
 import { ServiceTree } from './service-tree.model';
 import { CreateServiceTreeDto } from './dto/create-service-tree.dto';
 import { ServicesService } from '../services/services.service';
+const { Op } = require('sequelize');
 
 @Injectable()
 export class ServiceTreeService {
@@ -52,5 +53,19 @@ export class ServiceTreeService {
       }/`,
       service_id: dto.service_id,
     });
+  }
+
+  async deletePath(path: string) {
+    const deletedItems = await this.serviceTreeRepository.destroy({
+      where: {
+        path: {
+          [Op.like]: `${path}%`,
+        },
+      },
+    });
+
+    console.log(`Удалено ${deletedItems} элементов`)
+
+    return deletedItems;
   }
 }

@@ -1,5 +1,10 @@
+<h2 mat-dialog-title>Список услуг и групп услуг</h2>
+
 <p *ngFor="let service of data.services | async">
-  <mat-checkbox (change)="onCheckItem(service, $event)">{{service.name}}</mat-checkbox>
+  <mat-checkbox (change)="onCheckItem(service, $event)">
+    <mat-icon class="mat-icon-rtl-mirror gray" color="primary">{{ service.isGroup ? 'folder' : 'description' }}</mat-icon>
+    {{service.name}}
+  </mat-checkbox>
 </p>
 
-<button mat-raised-button color="primary" (click)="onSave()">Сохранить</button>
+<button mat-raised-button color="primary" (click)="onSave()">Добавить</button>

@@ -10,7 +10,7 @@ export interface ServiceTreeItem {
   updated_at: string;
 }
 
-export type TreeItem = Omit<ServiceTreeItem, 'path'> & { items: TreeItem[]; path: string[]; }
+export type TreeItem = Omit<ServiceTreeItem, 'path'> & { items: TreeItem[]; path: string[]; originalPath: string; }
 
 @Injectable({
   providedIn: 'root'
@@ -31,13 +31,28 @@ export class ServiceTreeService {
     });
   }
 
+  findById(tree: TreeItem[], id: number) {
+    const stack: TreeItem[] = [];
+
+    tree.forEach((treeItem) => stack.push(treeItem));
+
+    while (stack.length) {
+      const element = stack.pop();
+      if (!element) return;
+      if (element.id === id) return element;
+      element.items.forEach((treeItem) => stack.push(treeItem));
+    }
+
+    return null;
+  }
+
   buildTree(treeItems: ServiceTreeItem[], services: Service[]) {
-    console.log('buildTree')
     const tree: TreeItem[] = [];
 
     const filteredTreeItems: TreeItem[] = treeItems
       .map((treeItem) => ({
         ...treeItem,
+        originalPath: treeItem.path,
         path: treeItem.path.split('/').slice(0, -2),
         items: []
       }))
@@ -65,8 +80,10 @@ export class ServiceTreeService {
       }
     }
 
-    console.log(tree);
-
     return tree;
+  }
+
+  deleteByPath(path: string) {
+    return this.http.delete<number>(`http://localhost:3000/service-tree?path=${path}`);
   }
 }

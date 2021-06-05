@@ -1,0 +1,17 @@
+/*.gray {*/
+/*  color: #eeeeee;*/
+/*}*/
+
+:host ::ng-deep mat-checkbox .mat-checkbox-label {
+  display: flex;
+  align-items: center;
+}
+
+:host ::ng-deep mat-checkbox .mat-checkbox-label mat-icon {
+  margin-right: 5px;
+}
+
+button {
+  margin-top: 10px;
+  width: 100%;
+}
