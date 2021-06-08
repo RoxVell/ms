@@ -14,3 +14,15 @@
 .drawer {
   min-width: 230px;
 }
+
+.logo {
+  display: flex;
+  align-items: center;
+  padding: 15px 20px;
+  font-size: 32px;
+}
+
+.logo h2 {
+  padding: 0 !important;
+  margin: 0 0 0 8px !important;
+}

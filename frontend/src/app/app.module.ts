@@ -15,6 +15,8 @@ import { EditServiceModalComponent } from './components/modals/edit-service-moda
 import { ServicesModule } from "./services/services.module";
 import { MultilevelMenuService, NgMaterialMultilevelMenuModule } from "ng-material-multilevel-menu";
 import { ServicesSelectModalComponent } from './components/modals/services-select-modal/services-select-modal.component';
+import { EditWindowModalComponent } from './components/modals/edit-window-modal/edit-window-modal.component';
+import { WindowsModule } from "./windows/windows.module";
 
 @NgModule({
   declarations: [
@@ -24,6 +26,7 @@ import { ServicesSelectModalComponent } from './components/modals/services-selec
     DefaultLayout,
     EditServiceModalComponent,
     ServicesSelectModalComponent,
+    EditWindowModalComponent,
   ],
   imports: [
     BrowserModule,
@@ -35,6 +38,7 @@ import { ServicesSelectModalComponent } from './components/modals/services-selec
     AuthModule,
     ServicesModule,
     NgMaterialMultilevelMenuModule,
+    WindowsModule,
   ],
   providers: [MultilevelMenuService],
   bootstrap: [AppComponent]

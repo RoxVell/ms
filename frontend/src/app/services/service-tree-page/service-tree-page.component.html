@@ -1,25 +1,29 @@
 <div class="page-container">
   <h1>Дерево услуг</h1>
+  <button mat-raised-button color="primary" (click)="addNewRootItem()">
+    <mat-icon>add</mat-icon>
+    Добавить корневой элемент
+  </button>
 </div>
 
 <mat-tree #tree [dataSource]="dataSource" [treeControl]="treeControl" *ngIf="servicesDict$ | async as s">
-  <button mat-icon-button (click)="addNewRootItem()"><mat-icon>add</mat-icon></button>
-  
-  <mat-tree-node *matTreeNodeDef="let node" matTreeNodePadding>
+  <mat-tree-node *matTreeNodeDef="let node" matTreeNodePadding matTreeNodePaddingIndent="20">
     <button mat-icon-button disabled></button>
+    <mat-icon class="mat-24">{{s[node.service_id].isGroup ? 'folder' : 'article'}}</mat-icon>
     {{s[node.service_id].name}}
     <button *ngIf="s[node.service_id].isGroup" mat-icon-button (click)="addNewItem(node)"><mat-icon>add</mat-icon></button>
     <button mat-icon-button (click)="deleteItem(node)"><mat-icon>remove</mat-icon></button>
   </mat-tree-node>
 
-  <mat-tree-node *matTreeNodeDef="let node;when: hasChild" matTreeNodePadding>
+  <mat-tree-node *matTreeNodeDef="let node;when: hasChild" matTreeNodePadding matTreeNodePaddingIndent="20">
     <button mat-icon-button matTreeNodeToggle [attr.aria-label]="'Toggle ' + node.service_id">
       <mat-icon class="mat-icon-rtl-mirror">
         {{treeControl.isExpanded(node) ? 'expand_more' : 'chevron_right'}}
       </mat-icon>
     </button>
 
-    {{s[node.service_id].name}}
+    <mat-icon class="mat-24">{{s[node.service_id].isGroup ? 'folder' : 'article'}}</mat-icon>
+    <b>{{s[node.service_id].name}}</b>
     <button mat-icon-button (click)="addNewItem(node)"><mat-icon>add</mat-icon></button>
     <button mat-icon-button (click)="deleteItem(node)"><mat-icon>remove</mat-icon></button>
   </mat-tree-node>

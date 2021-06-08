@@ -24,7 +24,7 @@ export class ServiceTreeService {
     return this.http.get<ServiceTreeItem[]>('http://localhost:3000/service-tree');
   }
 
-  addNewItem(parentId: number, serviceId: number) {
+  addNewItem(parentId: number | '', serviceId: number) {
     return this.http.post('http://localhost:3000/service-tree', {
       parent_id: parentId,
       service_id: serviceId
@@ -46,7 +46,7 @@ export class ServiceTreeService {
     return null;
   }
 
-  buildTree(treeItems: ServiceTreeItem[], services: Service[]) {
+  buildTree(treeItems: ServiceTreeItem[]) {
     const tree: TreeItem[] = [];
 
     const filteredTreeItems: TreeItem[] = treeItems
@@ -81,6 +81,10 @@ export class ServiceTreeService {
     }
 
     return tree;
+  }
+
+  buildObjectTree(treeItems: ServiceTreeItem[]) {
+    console.log(treeItems);
   }
 
   deleteByPath(path: string) {

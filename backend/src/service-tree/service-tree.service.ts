@@ -30,10 +30,8 @@ export class ServiceTreeService {
 
     let parentServiceTreeEntity;
 
-    if (!Number.isNaN(Number(dto.parent_id))) {
+    if (typeof dto.parent_id === 'number') {
       parentServiceTreeEntity = await this.getById(dto.parent_id);
-
-      // console.log(parentServiceTreeEntity)
 
       const isServiceGroup = await this.servicesService.isGroup(
         parentServiceTreeEntity.service_id,

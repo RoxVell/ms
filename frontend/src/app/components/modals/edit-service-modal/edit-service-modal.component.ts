@@ -43,7 +43,7 @@ export class EditServiceModalComponent implements OnInit {
       name: service.name || '',
       description: service.description || '',
       isGroup: this.data.isGroup,
-    };
+  };
   }
 
   createForm(service: Omit<Service, 'id'>) {

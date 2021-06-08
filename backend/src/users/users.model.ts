@@ -1,5 +1,11 @@
-import { Column, DataType, ForeignKey, Model, Table } from 'sequelize-typescript';
-import { Role } from "../roles/roles.model";
+import {
+  Column,
+  DataType,
+  ForeignKey,
+  Model,
+  Table,
+} from 'sequelize-typescript';
+import { Role } from '../roles/roles.model';
 
 interface UserCreationAttrs {
   email: string;

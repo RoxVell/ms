@@ -6,6 +6,7 @@ import { DefaultLayout } from "./components/layouts/default-layout/default-layou
 import { ServicesPageComponent } from "./services/services-page/services-page.component";
 import { ServiceGroupsPageComponent } from "./services/service-groups-page/service-groups-page.component";
 import { ServiceTreePageComponent } from "./services/service-tree-page/service-tree-page.component";
+import { WindowsPageComponent } from "./windows/windows-page/windows-page.component";
 
 const routes: Routes = [
   {
@@ -37,6 +38,10 @@ const routes: Routes = [
             component: ServiceTreePageComponent,
           }
         ]
+      },
+      {
+        path: 'windows',
+        component: WindowsPageComponent,
       }
     ]
   },

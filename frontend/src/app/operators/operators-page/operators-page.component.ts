@@ -45,7 +45,6 @@ export class OperatorsPageComponent implements OnInit {
     });
 
     dialogRef.componentInstance.confirm.subscribe((result) => {
-      console.log(result)
       this.operatorsService.editOperator(operator.id, result).then(r => {
         dialogRef.close();
         this.updateOperators();
@@ -64,7 +63,6 @@ export class OperatorsPageComponent implements OnInit {
     });
 
     dialogRef.componentInstance.confirm.subscribe((result) => {
-      console.log(result)
       this.operatorsService.createOperator(result).then(r => {
         dialogRef.close();
         this.updateOperators();
@@ -75,11 +73,7 @@ export class OperatorsPageComponent implements OnInit {
   }
 
   onOpenDeleteOperatorModal(operator: any) {
-    const dialogRef = this.dialog.open(DeleteConfirmModalComponent, {
-      data: {
-        isRemove: false
-      },
-    });
+    const dialogRef = this.dialog.open(DeleteConfirmModalComponent);
 
     dialogRef.afterClosed().subscribe(async result => {
       if (result) {

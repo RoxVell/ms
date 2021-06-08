@@ -10,7 +10,7 @@ import { MatDialog } from "@angular/material/dialog";
 import { DeleteConfirmModalComponent } from "../../components/modals/delete-confirm-modal/delete-confirm-modal.component";
 
 /** Flat node with expandable and level information */
-interface FlatNode {
+export interface FlatNode {
   expandable: boolean;
   id: number;
   service_id: number;
@@ -31,7 +31,7 @@ export class ServiceTreePageComponent {
   servicesDict$ = this.services$.pipe(map((services) => this.servicesService.buildDictByServices(services)));
   treeItems = merge(this.updateTrigger$).pipe(switchMap(() => this.serviceTreeService.getTreeItems()));
   tree = combineLatest(this.treeItems, this.services$).pipe(
-    map(([treeItems, services]) => this.serviceTreeService.buildTree(treeItems, services)),
+    map(([treeItems]) => this.serviceTreeService.buildTree(treeItems)),
     tap(() => {
       setTimeout(() => this.treeElement.treeControl.expandAll());
     })
@@ -89,7 +89,7 @@ export class ServiceTreePageComponent {
       dialogRef.componentInstance.save.subscribe((serviceIds) => {
         const job = serviceIds.map((serviceId) => this.serviceTreeService.addNewItem(node.id, serviceId));
 
-        forkJoin(job).subscribe((res) => {
+        forkJoin(job).subscribe(() => {
           this.updateTrigger$.next(2);
           dialogRef.close();
         });
@@ -113,6 +113,28 @@ export class ServiceTreePageComponent {
   }
 
   addNewRootItem() {
-    console.log('das')
+    this.tree.pipe(first()).subscribe(tree => {
+      // const element = this.serviceTreeService.findById(tree, node.id);
+      const excludeServiceIds = tree.map((item) => item.service_id) || [];
+
+      const dialogRef = this.dialog.open(ServicesSelectModalComponent, {
+        data: {
+          services: this.services$.pipe(
+            map((service) => {
+              return service.filter((serviceItem) => !excludeServiceIds.includes(serviceItem.id))
+            })),
+        },
+        minWidth: 500
+      });
+
+      dialogRef.componentInstance.save.subscribe((serviceIds) => {
+        const job = serviceIds.map((serviceId) => this.serviceTreeService.addNewItem('', serviceId));
+
+        forkJoin(job).subscribe(() => {
+          this.updateTrigger$.next(2);
+          dialogRef.close();
+        });
+      });
+    });
   }
 }

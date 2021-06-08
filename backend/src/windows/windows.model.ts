@@ -1,17 +1,11 @@
-import {
-  Column,
-  DataType,
-  ForeignKey,
-  Model,
-  Table,
-} from 'sequelize-typescript';
-import { Role } from '../roles/roles.model';
+import { Column, DataType, Model, Table } from 'sequelize-typescript';
 import { WINDOW_TYPE, WINDOW_TYPES } from './dto/window-type';
 
 interface WindowCreationAttrs {
   name: string;
   type: WINDOW_TYPE;
-  roleId: number;
+  serviceIds: number[];
+  operatorIds: number[];
 }
 
 @Table({ tableName: `windows` })
@@ -35,4 +29,16 @@ export class Window extends Model<Window, WindowCreationAttrs> {
     allowNull: false,
   })
   type: string;
+
+  @Column({
+    type: DataType.ARRAY({ type: DataType.NUMBER }),
+    allowNull: false,
+  })
+  serviceIds: number[];
+
+  @Column({
+    type: DataType.ARRAY({ type: DataType.NUMBER }),
+    allowNull: false,
+  })
+  operatorIds: number[];
 }

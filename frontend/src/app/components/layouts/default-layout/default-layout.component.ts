@@ -36,6 +36,12 @@ export class DefaultLayout implements OnInit {
       link: '/operators',
       hrefTargetType: '_blank'
     },
+    {
+      label: 'Окна',
+      icon: 'window',
+      link: '/windows',
+      hrefTargetType: '_blank'
+    }
   ];
 
   constructor() { }
