@@ -8,9 +8,7 @@ import { AuthModule } from "../auth/auth.module";
 @Module({
   providers: [RolesService],
   controllers: [RolesController],
-  imports: [
-    SequelizeModule.forFeature([Role]),
-    AuthModule
-  ]
+  imports: [SequelizeModule.forFeature([Role]), AuthModule],
+  exports: [RolesService]
 })
 export class RolesModule {}

@@ -7,6 +7,7 @@ import { ServicesPageComponent } from "./services/services-page/services-page.co
 import { ServiceGroupsPageComponent } from "./services/service-groups-page/service-groups-page.component";
 import { ServiceTreePageComponent } from "./services/service-tree-page/service-tree-page.component";
 import { WindowsPageComponent } from "./windows/windows-page/windows-page.component";
+import { RegistratorPageComponent } from "./registrator/registrator-page/registrator-page.component";
 
 const routes: Routes = [
   {
@@ -48,6 +49,10 @@ const routes: Routes = [
   {
     path: 'auth/login',
     component: LoginPageComponent,
+  },
+  {
+    path: 'registrator',
+    component: RegistratorPageComponent,
   }
 ];
 

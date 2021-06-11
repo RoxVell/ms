@@ -7,11 +7,11 @@ import { JwtAuthGuard } from '../auth/jwt-auth.guard';
 export class UsersController {
   constructor(private usersService: UsersService) {}
 
-  @Post('/operator')
-  createOperator(@Body() userDto: CreateUserDto) {
-    console.log(userDto);
-    return this.usersService.createOperator(userDto);
-  }
+  // @Post('/operator')
+  // createOperator(@Body() userDto: CreateUserDto) {
+  //   console.log(userDto);
+  //   return this.usersService.createOperator(userDto);
+  // }
 
   @Get('/operators')
   async getOperators() {

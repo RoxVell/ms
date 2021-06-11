@@ -1,5 +1,12 @@
-import { Column, DataType, Model, Table } from 'sequelize-typescript';
-import { WINDOW_TYPE, WINDOW_TYPES } from './dto/window-type';
+import {
+  Column,
+  DataType,
+  ForeignKey, HasMany,
+  Model,
+  Table,
+} from 'sequelize-typescript';
+import { WINDOW_TYPE } from './dto/window-type';
+import { WindowType } from './windows-types.model';
 
 interface WindowCreationAttrs {
   name: string;
@@ -24,20 +31,21 @@ export class Window extends Model<Window, WindowCreationAttrs> {
   })
   name: string;
 
+  @ForeignKey(() => WindowType)
   @Column({
-    type: DataType.ENUM(...WINDOW_TYPES),
+    type: DataType.STRING,
     allowNull: false,
   })
   type: string;
 
   @Column({
-    type: DataType.ARRAY({ type: DataType.NUMBER }),
+    type: DataType.ARRAY({ type: DataType.STRING }),
     allowNull: false,
   })
   serviceIds: number[];
 
   @Column({
-    type: DataType.ARRAY({ type: DataType.NUMBER }),
+    type: DataType.ARRAY({ type: DataType.STRING }),
     allowNull: false,
   })
   operatorIds: number[];

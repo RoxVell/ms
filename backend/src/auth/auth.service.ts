@@ -28,11 +28,12 @@ export class AuthService {
   async register(userDto: CreateUserDto) {
     const candidate = await this.usersService.getUserByEmail(userDto.email);
 
-    if (candidate)
+    if (candidate) {
       throw new HttpException(
         `Пользователь с email ${userDto.email} уже зарегистрирован`,
         HttpStatus.BAD_REQUEST,
       );
+    }
 
     const hashPassword = await bcrypt.hash(userDto.password, 5);
     const user = await this.usersService.createUser({

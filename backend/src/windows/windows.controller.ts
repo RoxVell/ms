@@ -9,10 +9,20 @@ import {
 } from '@nestjs/common';
 import { CreateWindowDto } from './dto/create-window.dto';
 import { WindowsService } from './windows.service';
+import { CreateWindowTypeDto } from "./dto/create-window-type.dto";
 
 @Controller('windows')
 export class WindowsController {
   constructor(private windowsService: WindowsService) {}
+
+  @Post('/window-type')
+  async createWindowType(@Body() dto: CreateWindowTypeDto) {
+    try {
+      return await this.windowsService.createWindowType(dto);
+    } catch (e) {
+      throw new BadRequestException();
+    }
+  }
 
   @Post('/')
   async createWindow(@Body() dto: CreateWindowDto) {

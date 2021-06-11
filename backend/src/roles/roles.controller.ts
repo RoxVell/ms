@@ -9,7 +9,7 @@ export class RolesController {
   constructor(private rolesService: RolesService) {
   }
 
-  @UseGuards(JwtAuthGuard)
+  // @UseGuards(JwtAuthGuard)
   @Post('/')
   async createRole(@Body() roleDto: CreateRoleDto) {
     return await this.rolesService.createRole(roleDto);

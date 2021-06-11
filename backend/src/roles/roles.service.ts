@@ -10,4 +10,10 @@ export class RolesService {
   createRole(roleDto: CreateRoleDto) {
     return this.rolesRepository.create(roleDto);
   }
+
+  async isRoleExists(role: string) {
+    return Boolean(
+      await this.rolesRepository.findOne({ where: { value: role } }),
+    );
+  }
 }

@@ -30,10 +30,10 @@ export class OperatorsService {
   }
 
   createOperator(operator: CreateUserCredentials) {
-    return this.http.post(`http://localhost:3000/users/operator`, { ...operator, roleId: 2 }).toPromise();
+    return this.http.post(`http://localhost:3000/auth/register`, { ...operator, role: 'operator' }).toPromise();
   }
 
   editOperator(id: number, operator: CreateUserCredentials) {
-    return this.http.put(`http://localhost:3000/users/${id}`, { ...operator, roleId: 2 }).toPromise();
+    return this.http.put(`http://localhost:3000/users/${id}`, { ...operator, role: 'operator' }).toPromise();
   }
 }

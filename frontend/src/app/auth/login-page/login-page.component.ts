@@ -39,6 +39,5 @@ export class LoginPageComponent implements OnInit {
         panelClass: ['color-red']
       });
     }
-
   }
 }

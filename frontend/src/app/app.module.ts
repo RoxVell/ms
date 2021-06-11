@@ -17,6 +17,7 @@ import { MultilevelMenuService, NgMaterialMultilevelMenuModule } from "ng-materi
 import { ServicesSelectModalComponent } from './components/modals/services-select-modal/services-select-modal.component';
 import { EditWindowModalComponent } from './components/modals/edit-window-modal/edit-window-modal.component';
 import { WindowsModule } from "./windows/windows.module";
+import { RegistratorModule } from "./registrator/registrator.module";
 
 @NgModule({
   declarations: [
@@ -39,6 +40,7 @@ import { WindowsModule } from "./windows/windows.module";
     ServicesModule,
     NgMaterialMultilevelMenuModule,
     WindowsModule,
+    RegistratorModule,
   ],
   providers: [MultilevelMenuService],
   bootstrap: [AppComponent]

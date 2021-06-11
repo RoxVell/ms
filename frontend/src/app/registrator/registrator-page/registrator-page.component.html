@@ -1,0 +1,29 @@
+<header>
+  <div class="header-main" *ngIf="path.length === 0; else some">
+    <mat-icon class="mat-48 icon">cloud_queue</mat-icon>
+    <h1>Электронная очередь</h1>
+  </div>
+
+  <ng-template #some>
+    <div class="back-panel">
+      <button class="back-btn" (click)="backFolder()">
+        <mat-icon class="mat-48 icon">arrow_back</mat-icon>
+        Назад
+      </button>
+      <p class="group-desc">{{description}}</p>
+    </div>
+  </ng-template>
+</header>
+
+<main>
+  <h2 *ngIf="path.length === 0">Пожалуйста, выберите услугу:</h2>
+  <ul class="service-tree-list" *ngIf="servicesDict">
+    <li class="service-tree-list__item" *ngFor="let item of currentGroup">
+      <app-registrator-item
+        [isGroup]="servicesDict[item.service_id].isGroup"
+        [title]="servicesDict[item.service_id].name"
+        (click)="onItemClick(item)"
+      ></app-registrator-item>
+    </li>
+  </ul>
+</main>

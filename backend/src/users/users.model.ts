@@ -10,7 +10,8 @@ import { Role } from '../roles/roles.model';
 interface UserCreationAttrs {
   email: string;
   password: string;
-  roleId: number;
+  // roleId: number;
+  role: string;
 }
 
 @Table({ tableName: `users` })
@@ -44,8 +45,8 @@ export class User extends Model<User, UserCreationAttrs> {
 
   @ForeignKey(() => Role)
   @Column({
-    type: DataType.INTEGER,
+    type: DataType.STRING,
     allowNull: false,
   })
-  roleId: number;
+  role: string;
 }

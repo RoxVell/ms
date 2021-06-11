@@ -1,15 +1,24 @@
-import { Injectable } from '@nestjs/common';
+import { BadRequestException, Injectable } from '@nestjs/common';
 import { CreateWindowDto } from './dto/create-window.dto';
 import { InjectModel } from '@nestjs/sequelize';
 import { Window } from './windows.model';
+import { WindowType } from './windows-types.model';
+import { CreateWindowTypeDto } from "./dto/create-window-type.dto";
 
 @Injectable()
 export class WindowsService {
-  constructor(@InjectModel(Window) private windowsRepository: typeof Window) {}
+  constructor(
+    @InjectModel(Window) private windowsRepository: typeof Window,
+    @InjectModel(WindowType) private windowTypesRepository: typeof WindowType,
+  ) {}
 
-  create(dto: CreateWindowDto) {
-    // dto
-    console.log(dto)
+  async create(dto: CreateWindowDto) {
+    const isWindowTypeExists = await this.isWindowTypeExists(dto.type);
+
+    if (!isWindowTypeExists) {
+      throw new BadRequestException(`Window type '${dto.type}' doesn't exists`);
+    }
+
     return this.windowsRepository.create(dto);
   }
 
@@ -28,6 +37,17 @@ export class WindowsService {
   }
 
   delete(id: number) {
-    return this.windowsRepository.destroy({ where: { id } })
+    return this.windowsRepository.destroy({ where: { id } });
+  }
+
+  async isWindowTypeExists(windowType: string) {
+    const target = await this.windowTypesRepository.findOne({
+      where: { value: windowType },
+    });
+    return Boolean(target);
+  }
+
+  createWindowType(dto: CreateWindowTypeDto) {
+    return this.windowTypesRepository.create(dto);
   }
 }
