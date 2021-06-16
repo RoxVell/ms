@@ -1,7 +1,7 @@
 import {
   Column,
   DataType,
-  ForeignKey, HasMany,
+  ForeignKey,
   Model,
   Table,
 } from 'sequelize-typescript';
@@ -39,13 +39,13 @@ export class Window extends Model<Window, WindowCreationAttrs> {
   type: string;
 
   @Column({
-    type: DataType.ARRAY({ type: DataType.STRING }),
+    type: DataType.ARRAY({ type: DataType.INTEGER }),
     allowNull: false,
   })
   serviceIds: number[];
 
   @Column({
-    type: DataType.ARRAY({ type: DataType.STRING }),
+    type: DataType.ARRAY({ type: DataType.INTEGER }),
     allowNull: false,
   })
   operatorIds: number[];

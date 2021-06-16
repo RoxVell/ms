@@ -1,4 +1,4 @@
-import { Injectable } from '@nestjs/common';
+import { HttpException, HttpStatus, Injectable } from '@nestjs/common';
 import CreateRoleDto from './dto/create-role.dto';
 import { InjectModel } from '@nestjs/sequelize';
 import { Role } from './roles.model';
@@ -7,8 +7,15 @@ import { Role } from './roles.model';
 export class RolesService {
   constructor(@InjectModel(Role) private rolesRepository: typeof Role) {}
 
-  createRole(roleDto: CreateRoleDto) {
-    return this.rolesRepository.create(roleDto);
+  async createRole(roleDto: CreateRoleDto) {
+    if (await this.isRoleExists(roleDto.value)) {
+      throw new HttpException(
+        `Role ${roleDto} doesn't exists`,
+        HttpStatus.BAD_REQUEST,
+      );
+    }
+
+    return await this.rolesRepository.create(roleDto);
   }
 
   async isRoleExists(role: string) {

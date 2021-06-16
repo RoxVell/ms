@@ -21,16 +21,8 @@ export class UsersService {
     return this.usersRepository.create(userDto);
   }
 
-  // createOperator(userDto: CreateUserDto) {
-  //   return this.createUser({ ...userDto, role: 'operator' });
-  // }
-
-  async getUserByEmail(email: string) {
-    return await this.usersRepository.findOne({ where: { email } });
-  }
-
-  async getOperators() {
-    return await this.usersRepository.findAll({ where: { role: 'operator' } });
+  getUserByEmail(email: string) {
+    return this.usersRepository.findOne({ where: { email } });
   }
 
   deleteUser(id: number) {
@@ -43,5 +35,9 @@ export class UsersService {
     if (!user) throw new Error(`User doesn't exist`);
 
     return user.update(data);
+  }
+
+  getUsersWithRole(role: string) {
+    return this.usersRepository.findAll({ where: { role } });
   }
 }

@@ -3,7 +3,7 @@ import { InjectModel } from '@nestjs/sequelize';
 import { ServiceTree } from './service-tree.model';
 import { CreateServiceTreeDto } from './dto/create-service-tree.dto';
 import { ServicesService } from '../services/services.service';
-const { Op } = require('sequelize');
+import { Op } from 'sequelize';
 
 @Injectable()
 export class ServiceTreeService {
@@ -17,7 +17,6 @@ export class ServiceTreeService {
   }
 
   getById(id: number) {
-    console.log(`[ServiceTreeService] getById: ${id}`);
     return this.serviceTreeRepository.findOne({ where: { id } });
   }
 
@@ -62,7 +61,7 @@ export class ServiceTreeService {
       },
     });
 
-    console.log(`Удалено ${deletedItems} элементов`)
+    console.log(`Удалено ${deletedItems} элементов`);
 
     return deletedItems;
   }

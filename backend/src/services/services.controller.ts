@@ -12,13 +12,13 @@ export class ServicesController {
   }
 
   @Get('/')
-  getServices(@Query('isGroup') isGroup: boolean) {
-    return this.servicesService.getServices(isGroup);
+  async getServices(@Query('isGroup') isGroup: boolean) {
+    return await this.servicesService.getServices(isGroup);
   }
 
   @Post('/')
-  createService(@Body() serviceDto: CreateServiceDto) {
-    return this.servicesService.createService(serviceDto);
+  async createService(@Body() serviceDto: CreateServiceDto) {
+    return await this.servicesService.createService(serviceDto);
   }
 
   @Put('/:id')

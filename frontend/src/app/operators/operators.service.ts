@@ -22,7 +22,7 @@ export class OperatorsService {
   ) { }
 
   getOperators() {
-    return this.http.get<Operator[]>('http://localhost:3000/users/operators');
+    return this.http.get<Operator[]>('http://localhost:3000/operators');
   }
 
   delete(id: number) {
@@ -30,7 +30,7 @@ export class OperatorsService {
   }
 
   createOperator(operator: CreateUserCredentials) {
-    return this.http.post(`http://localhost:3000/auth/register`, { ...operator, role: 'operator' }).toPromise();
+    return this.http.post(`http://localhost:3000/operators`, { ...operator }).toPromise();
   }
 
   editOperator(id: number, operator: CreateUserCredentials) {

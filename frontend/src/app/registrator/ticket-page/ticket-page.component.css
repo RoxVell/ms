@@ -1,0 +1,72 @@
+:host {
+  width: 100vw;
+  height: 100vh;
+  background-color: #20A038;
+  display: flex;
+  justify-content: flex-end;
+  flex-direction: column;
+  align-items: center;
+  padding-bottom: 4.296875vh;
+  box-sizing: border-box;
+}
+
+p.ticket-message {
+  font-size: 2.9296875vh;
+  color: white;
+  text-align: center;
+  margin-bottom: 3.90625vh;
+  font-weight: 600;
+  line-height: 3.515625vh;
+}
+
+.ticket {
+  width: 320px;
+  background-color: white;
+  position: relative;
+  color: black;
+  margin-bottom: 5.078125vh;
+  text-align: center;
+  box-sizing: border-box;
+  padding: 16px 10px;
+}
+
+.ticket svg {
+  position: absolute;
+  left: 0;
+}
+
+.ticket svg:first-child {
+  top: -16px;
+}
+
+.ticket svg:last-child {
+  bottom: -16px;
+}
+
+.ticket-name {
+  font-size: 4.1015625vh;
+  font-weight: 600;
+}
+
+.ticket-service-name {
+  font-size: 1.5625vh;
+  line-height: 2.34375vh;
+  margin-bottom: 0.78125vh;
+  font-weight: 500;
+  margin-top: 1.78125vh;
+}
+
+.ticket-service-desc {
+  font-size: 1.3671875vh;
+  margin-bottom: 0.78125vh;
+}
+
+.ticket-desc {
+  font-size: 1.3671875vh;
+  margin-bottom: 0.78125vh;
+}
+
+.ticket-date {
+  font-size: 1.3671875vh;
+  margin-bottom: 0.78125vh;
+}

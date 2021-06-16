@@ -4,11 +4,13 @@ import { RegistratorPageComponent } from './registrator-page/registrator-page.co
 import { ServiceTreeModule } from "../components/service-tree/service-tree.module";
 import { RegistratorItemComponent } from './registrator-item/registrator-item.component';
 import { DemoMaterialModule } from "../material/material.module";
+import { TicketPageComponent } from './ticket-page/ticket-page.component';
 
 @NgModule({
   declarations: [
     RegistratorPageComponent,
-    RegistratorItemComponent
+    RegistratorItemComponent,
+    TicketPageComponent
   ],
   imports: [
     CommonModule,
@@ -16,7 +18,6 @@ import { DemoMaterialModule } from "../material/material.module";
     DemoMaterialModule,
   ],
   exports: [
-
   ]
 })
 export class RegistratorModule { }

@@ -10,6 +10,7 @@ import { Role } from './roles/roles.model';
 import { Service } from "./services/service.model";
 import { AuthModule } from './auth/auth.module';
 import { ServiceTreeModule } from './service-tree/service-tree.module';
+import { TicketsModule } from './tickets/tickets.module';
 
 @Module({
   imports: [
@@ -20,7 +21,7 @@ import { ServiceTreeModule } from './service-tree/service-tree.module';
       username: 'postgres',
       password: 'root',
       database: 'equeue',
-      models: [User, Role, Service],
+      models: [],
       autoLoadModels: true,
     }),
     WindowsModule,
@@ -30,6 +31,7 @@ import { ServiceTreeModule } from './service-tree/service-tree.module';
     RolesModule,
     AuthModule,
     ServiceTreeModule,
+    TicketsModule,
   ],
   controllers: [],
   providers: [],

@@ -10,7 +10,6 @@ import { Role } from '../roles/roles.model';
 interface UserCreationAttrs {
   email: string;
   password: string;
-  // roleId: number;
   role: string;
 }
 

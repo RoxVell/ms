@@ -10,6 +10,7 @@ import { combineLatest, forkJoin, merge } from "rxjs";
   styleUrls: ['./registrator-page.component.css']
 })
 export class RegistratorPageComponent implements OnInit {
+  isTicketPickedUp = false;
   path: TreeItem[] = [];
 
   services: Service[] = [];
@@ -55,9 +56,13 @@ export class RegistratorPageComponent implements OnInit {
     if (this.servicesDict[item.service_id].isGroup) {
       this.openFolder(item);
     } else {
-
+      this.takeTicket(item);
     }
 
+  }
+
+  takeTicket(item: TreeItem) {
+    this.isTicketPickedUp = true;
   }
 
   openFolder(service: TreeItem) {

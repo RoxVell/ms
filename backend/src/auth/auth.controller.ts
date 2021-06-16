@@ -1,17 +1,18 @@
-import { Body, Controller, Post } from '@nestjs/common';
-import { AuthService } from "./auth.service";
-import { CreateUserDto } from "../users/dto/create-user.dto";
+import { Body, Controller, InternalServerErrorException, Post } from '@nestjs/common';
+import { AuthService } from './auth.service';
+import { CreateUserDto } from '../users/dto/create-user.dto';
 
 @Controller('auth')
 export class AuthController {
-
-  constructor(private authService: AuthService) {
-  }
+  constructor(private authService: AuthService) {}
 
   @Post('/login')
   login(@Body() userDto: CreateUserDto) {
-    console.log(userDto)
-    return this.authService.login(userDto);
+    try {
+      return this.authService.login(userDto);
+    } catch (e) {
+      throw new InternalServerErrorException();
+    }
   }
 
   @Post('/register')

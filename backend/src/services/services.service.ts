@@ -9,8 +9,8 @@ export class ServicesService {
     @InjectModel(Service) private servicesRepository: typeof Service,
   ) {}
 
-  async createService(serviceDto: CreateServiceDto) {
-    return await this.servicesRepository.create(serviceDto);
+  createService(serviceDto: CreateServiceDto) {
+    return this.servicesRepository.create(serviceDto);
   }
 
   async editService(id: number, serviceDto: CreateServiceDto) {
@@ -21,11 +21,7 @@ export class ServicesService {
     return service.update(serviceDto);
   }
 
-  // async getAllServices() {
-  //   return this.servicesRepository.findAll();
-  // }
-
-  async getServices(isGroup: boolean) {
+  getServices(isGroup: boolean) {
     if (['true', 'false'].includes(String(isGroup))) {
       return this.servicesRepository.findAll({ where: { isGroup } });
     } else {
