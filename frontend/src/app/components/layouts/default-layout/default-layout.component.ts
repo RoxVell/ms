@@ -8,7 +8,7 @@ import { Component, OnInit } from '@angular/core';
 export class DefaultLayout implements OnInit {
   appitems = [
     {
-      label: 'Услуги',
+      label: 'Управление услугами',
       items: [
         {
           label: 'Услуги',
