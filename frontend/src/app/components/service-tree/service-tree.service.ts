@@ -83,10 +83,6 @@ export class ServiceTreeService {
     return tree;
   }
 
-  buildObjectTree(treeItems: ServiceTreeItem[]) {
-    console.log(treeItems);
-  }
-
   deleteByPath(path: string) {
     return this.http.delete<number>(`http://localhost:3000/service-tree?path=${path}`);
   }

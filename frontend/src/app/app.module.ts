@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import { LOCALE_ID, NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
@@ -18,6 +18,10 @@ import { ServicesSelectModalComponent } from './components/modals/services-selec
 import { EditWindowModalComponent } from './components/modals/edit-window-modal/edit-window-modal.component';
 import { WindowsModule } from "./windows/windows.module";
 import { RegistratorModule } from "./registrator/registrator.module";
+import localeRu from '@angular/common/locales/ru';
+import { registerLocaleData } from "@angular/common";
+
+registerLocaleData(localeRu);
 
 @NgModule({
   declarations: [
@@ -42,7 +46,10 @@ import { RegistratorModule } from "./registrator/registrator.module";
     WindowsModule,
     RegistratorModule,
   ],
-  providers: [MultilevelMenuService],
+  providers: [
+    MultilevelMenuService,
+    { provide: LOCALE_ID, useValue: "ru" },
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

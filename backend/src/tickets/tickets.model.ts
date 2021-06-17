@@ -6,18 +6,12 @@ import {
   Table,
 } from 'sequelize-typescript';
 import { ServiceTree } from '../service-tree/service-tree.model';
+import { TicketStatus } from './consts/ticket-status';
 
 type TicketCreationAttrs = Pick<
   Tickets,
   'serviceTreeId' | 'prefix' | 'number' | 'status'
 >;
-
-export enum TicketStatus {
-  Done = 'Завершён',
-  Waiting = 'Ожидание',
-  Servicing = 'Обслуживание',
-  Canceled = 'Отменён',
-}
 
 export const TICKET_STATUSES = Object.values(TicketStatus);
 

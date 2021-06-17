@@ -114,7 +114,6 @@ export class ServiceTreePageComponent {
 
   addNewRootItem() {
     this.tree.pipe(first()).subscribe(tree => {
-      // const element = this.serviceTreeService.findById(tree, node.id);
       const excludeServiceIds = tree.map((item) => item.service_id) || [];
 
       const dialogRef = this.dialog.open(ServicesSelectModalComponent, {

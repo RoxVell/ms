@@ -1,5 +1,10 @@
 
-<app-ticket-page *ngIf="isTicketPickedUp; else main" [name]="'А001'"></app-ticket-page>
+<app-ticket-page
+  *ngIf="isTicketPickedUp; else main"
+  [ticket]="pickedTicket"
+  [servicesDict]="servicesDict"
+  [serviceId]="currentServiceId"
+></app-ticket-page>
 
 <ng-template #main>
   <header>
@@ -7,7 +12,7 @@
       <mat-icon class="mat-48 icon">cloud_queue</mat-icon>
       <h1>Электронная очередь</h1>
     </div>
-  
+
     <ng-template #some>
       <div class="back-panel">
         <button class="back-btn" (click)="backFolder()">
@@ -18,7 +23,7 @@
       </div>
     </ng-template>
   </header>
-  
+
   <main>
     <h2 *ngIf="path.length === 0">Пожалуйста, выберите услугу:</h2>
     <ul class="service-tree-list" *ngIf="servicesDict">

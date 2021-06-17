@@ -37,7 +37,7 @@ export class ServicesPageComponent implements OnInit {
   openCreateServiceModal() {
     const dialogRef = this.dialog.open(EditServiceModalComponent, {
       data: {
-        editMode: EDIT_MODE.EDIT,
+        editMode: EDIT_MODE.CREATE,
         isGroup: false
       },
       minWidth: 500

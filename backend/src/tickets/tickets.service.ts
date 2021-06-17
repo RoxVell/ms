@@ -1,15 +1,16 @@
 import { Injectable } from '@nestjs/common';
 import { InjectModel } from '@nestjs/sequelize';
 import { CreateTicketDto } from './dto/create-ticket.dto';
-import { Tickets, TicketStatus } from './tickets.model';
+import { Tickets } from './tickets.model';
 import { Op } from 'sequelize';
+import { TicketStatus } from './consts/ticket-status';
 
 interface TicketNumber {
   prefix: string;
   number: number;
 }
 
-const MAX_TICKET_NUMBER = 8;
+const MAX_TICKET_NUMBER = 99;
 
 @Injectable()
 export class TicketsService {

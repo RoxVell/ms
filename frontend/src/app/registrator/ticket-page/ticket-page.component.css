@@ -70,3 +70,7 @@ p.ticket-message {
   font-size: 1.3671875vh;
   margin-bottom: 0.78125vh;
 }
+
+p {
+  line-height: initial;
+}

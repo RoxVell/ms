@@ -1,8 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ServiceTreeItem, ServiceTreeService, TreeItem } from "../../components/service-tree/service-tree.service";
 import { Service, ServicesService } from "../../services/services.service";
-import { first, map, switchMap, tap } from "rxjs/operators";
-import { combineLatest, forkJoin, merge } from "rxjs";
+import { RegistratorService, Ticket } from "../registrator.service";
 
 @Component({
   selector: 'app-registrator-page',
@@ -17,10 +16,13 @@ export class RegistratorPageComponent implements OnInit {
   servicesDict: { [key: number]: Service } | null = null;
   treeItems: ServiceTreeItem[] = [];
   tree: TreeItem[] = [];
+  pickedTicket: Ticket | null = null
+  currentServiceId: number | null = null;
 
   constructor(
     private serviceTreeService: ServiceTreeService,
     private servicesService: ServicesService,
+    private registratorService: RegistratorService,
   ) {}
 
   get currentGroup() {
@@ -58,11 +60,22 @@ export class RegistratorPageComponent implements OnInit {
     } else {
       this.takeTicket(item);
     }
-
   }
 
   takeTicket(item: TreeItem) {
-    this.isTicketPickedUp = true;
+    this.registratorService.takeTicket({ serviceTreeId: item.id })
+      .subscribe((response) => {
+        this.isTicketPickedUp = true;
+        this.pickedTicket = response;
+        this.currentServiceId = item.service_id;
+
+        setTimeout(() => {
+          this.isTicketPickedUp = false;
+          this.pickedTicket = null;
+          this.currentServiceId = null;
+          this.path = [];
+        }, 10000);
+      });
   }
 
   openFolder(service: TreeItem) {
